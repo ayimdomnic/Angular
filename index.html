@@ -3,12 +3,13 @@
     <head>
         <title>Using AngularJs Directives and Data Binding </title>
     </head>
-<body data-ng-init="names = ['sonford onyango','Mitacliff Agwanda','Ednah Onyancha']">
+<body data-ng-init=" programmers = [ {name:'sonford onyango', city:'Homabay'},
+{name:'Mitacliff Agwanda', city: 'Nyakach'},{name:'Ednah Onyancha',city:'Kisii'}]">
     Name:
     <br/>
     <input type="text" data-ng-model="name"/>{{name}}
     <ul>
-        <li data-ng-repeat = "personName in names">{{personName}}</li>
+        <li data-ng-repeat = "prog in programmers | filter:name | orderBy:city">{{prog.name}} - {{prog.city}}</li>
     </ul>
     
     <script src="scripts/angular.min.js"></script>
