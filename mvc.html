@@ -6,9 +6,10 @@
 <body data-ng-init="SimpleController">
     Name:
     <br/>
-    <input type="text" data-ng-model="name"/>{{name}}
+    <input type="text" data-ng-model="name"/>
+    <br/>
     <ul>
-        <li data-ng-repeat = "prog in programmers | filter:name | orderBy:city">{{prog.name | uppercase }} - {{prog.city |lowercase }}</li>
+        <li data-ng-repeat = "prog in programmers | filter:name | orderBy:city"></li>
     </ul>
     
     <script src="scripts/angular.min.js"></script>
