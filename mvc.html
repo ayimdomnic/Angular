@@ -3,24 +3,39 @@
     <head>
       <title>Using AngularJs Directives and Data Binding </title>
     </head>
-<body data-ng-init="SimpleController">
-    Name:
-    <br/>
-    <input type="text" data-ng-model="name"/>
-    <br/>
+<div class="container" data-ng-controller="NgModelController">
+    <h3>Filtering Data using "filter"</h3>
+    Name:<br />
+    <input type="text" data-ng-model="inputData.name" placeholder="name" />
+    <br />
+    City:<br />
+    <input type="text" data-ng-model="inputData.city" placeholder="city" />
+    <br />
+    <button class="btn btn-primary" data-ng-click="addCustomer()">Add Customer</button>
+    <br />
+    <br />
+
     <ul>
-        <li data-ng-repeat = "prog in programmers | filter:name | orderBy:city"></li>
+        <li data-ng-repeat="customer in customers">{{ customer.name }}</li>
     </ul>
-    
-    <script src="scripts/angular.min.js"></script>
-    <script>
-        function SimpleController($scope){
-            $scope.Programmers =[
-                {name: 'Sonford Onyango', city:'Homabay'},
-                {name:'Domnic Odhiambo', city:'Kisumu'},
-                {name:'Ednah Onayancha',city:'Kisii'}
-            ]
-        }
-    </script>
+</div>
+
+<script>
+    function NgModelController($scope) {
+        $scope.customers = [
+            { name: 'Dave Jones', city: 'Phoenix' },
+            { name: 'Jamie Riley', city: 'Atlanta' },
+            { name: 'Heedy Wahlin', city: 'Chandler' },
+            { name: 'Thomas Winter', city: 'Seattle' }
+        ];
+
+        $scope.addCustomer = function () {
+            $scope.customers.push({ name: $scope.inputData.name, city: $scope.inputData.city });
+        };
+    }
+
+    samplesModule.controller('NgModelController', NgModelController);
+</script>
+
 </body>
 </html> 
