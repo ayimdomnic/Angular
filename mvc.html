@@ -3,8 +3,9 @@
     <head>
       <title>Using AngularJs Directives and Data Binding </title>
     </head>
-<div class="container" data-ng-controller="NgModelController">
-    <h3>Filtering Data using "filter"</h3>
+    <body>
+<div class="container" data-ng-controller="FilteringController">
+    <h3>Filtering and Sorting Data using "filter"</h3>
     Name:<br />
     <input type="text" data-ng-model="inputData.name" placeholder="name" />
     <br />
@@ -15,27 +16,31 @@
     <br />
     <br />
 
-    <ul>
-        <li data-ng-repeat="customer in customers">{{ customer.name }}</li>
-    </ul>
+    Filter by Name:
+    <input type="text" data-ng-model="nameText" />
+    <br />
+<ul>
+    <li data-ng-repeat="customer in customers | filter:nameText | orderBy:'name'">{{ customer.name | uppercase }} - {{ customer.city }}</li>
+</ul>
 </div>
 
 <script>
-    function NgModelController($scope) {
+    function FilteringController($scope) {
         $scope.customers = [
             { name: 'Dave Jones', city: 'Phoenix' },
-            { name: 'Jamie Riley', city: 'Atlanta' },
+            { name: 'Jamie Riley', city: 'Phoenix' },
             { name: 'Heedy Wahlin', city: 'Chandler' },
             { name: 'Thomas Winter', city: 'Seattle' }
         ];
 
         $scope.addCustomer = function () {
             $scope.customers.push({ name: $scope.inputData.name, city: $scope.inputData.city });
-        };
+        }
     }
 
-    samplesModule.controller('NgModelController', NgModelController);
+    samplesModule.controller('FilteringController', FilteringController);
 </script>
+
 
 </body>
 </html> 
