@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+      <title>Using AngularJs Directives and Data Binding </title>
     </head>
-</html>
+<body data-ng-init="SimpleController">
+    Name:
+    <br/>
+    <input type="text" data-ng-model="name"/>{{name}}
+    <ul>
+        <li data-ng-repeat = "prog in programmers | filter:name | orderBy:city">{{prog.name | uppercase }} - {{prog.city |lowercase }}</li>
+    </ul>
+    
+    <script src="scripts/angular.min.js"></script>
+    <script>
+        function SimpleController($scope){
+            $scope.Programmers =[
+                {name: 'Sonford Onyango', city:'Homabay'},
+                {name:'Domnic Odhiambo', city:'Kisumu'},
+                {name:'Ednah Onayancha',city:'Kisii'}
+            ]
+        }
+    </script>
+</body>
+</html> 
